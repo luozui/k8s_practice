@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>演示</title>
+</head>
+<meta charset="UTF-8">
+<body>
+
+
+<h1 id="title_h1">文章标题</h1>
+<p id="view_cnt"></p>
+<hr>
+<p id="content">文章内容</p>
+
+<p id="hostname" style="bottom:0px; left:0px; text-align:center; width: 100%;background:#000; color:#FFF">hostname</p>
+
+<script>
+    let url = './getarticle' + location.search;
+    fetch(url)
+    .then(res => res.json())
+    .then((out) => {
+        if(out["title"]) {
+            x=document.getElementById("title_h1");
+            x.innerHTML=out["title"];
+        }
+        if(out["content"]) {
+            x=document.getElementById("content");
+            x.innerHTML=out["content"];
+        }
+        if(out["hostname"]) {
+            x=document.getElementById("hostname");
+            x.innerHTML="hostname: " + out["hostname"];
+        }
+        if(out["view_cnt"]) {
+            x=document.getElementById("view_cnt");
+            x.innerHTML="浏览量: " + out["view_cnt"];
+        }
+    })
+    .catch(err => { throw err });
+</script>
+</body>
+</html>
