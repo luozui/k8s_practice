@@ -7,9 +7,9 @@ import (
 	"fmt"
 
 	"github.com/gin-gonic/gin"
-	"github.com/app1-server/models"
-	"github.com/app1-server/dal/db"
-	"github.com/app1-server/dal/cache"
+	"github.com/luozui/app1-server/models"
+	"github.com/luozui/app1-server/dal/db"
+	"github.com/luozui/app1-server/dal/cache"
 )
 
 func AddArticle(c *gin.Context) {

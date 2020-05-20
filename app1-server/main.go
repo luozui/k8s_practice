@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/app1-server/view"
+	"github.com/luozui/app1-server/view"
 )
 
 func setupRouter() *gin.Engine {

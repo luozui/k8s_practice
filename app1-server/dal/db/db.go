@@ -7,7 +7,7 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 
-	models "github.com/app1-server/models"
+	models "github.com/luozui/app1-server/models"
 )
 
 var db *gorm.DB
@@ -17,7 +17,7 @@ func init() {
 	db, err = gorm.Open("mysql", fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8&parseTime=True&loc=Local",
 		"root",
 		"password",
-		"10.104.230.57",
+		"mysql.default.svc.cluster.local",
 		"app1"))
 	if err != nil {
 		log.Fatalf("models.Setup err: %v", err)

@@ -1,4 +1,4 @@
-module github.com/app1-server
+module github.com/luozui/app1-server
 
 go 1.14
 

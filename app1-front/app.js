@@ -32,5 +32,5 @@ var server= http.createServer(function(request, response){
         }
     });
 });
-server.listen(8080);
-console.log('Server is running at http://0.0.0.0:8080/');
+server.listen(80);
+console.log('Server is running at http://0.0.0.0:80/');

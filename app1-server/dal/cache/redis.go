@@ -11,7 +11,7 @@ var client *redis.Client
 
 func init() {
 	client = redis.NewClient(&redis.Options{
-		Addr:     "10.97.25.112:6379",
+		Addr:     "redis.default.svc.cluster.local:6379",
 		Password: "123456",
 		DB:       0,
 	})
