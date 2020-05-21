@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app1-server
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: app1-server
+      release: latest
+  template:
+    metadata:
+      labels:
+        app: app1-server
+        release: latest
+        env: test
+    spec:
+      containers:
+      - name: app1-server
+        image: registry.cn-qingdao.aliyuncs.com/luozui/app1-server:latest
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 80
+      imagePullSecrets:
+      - name: regcred

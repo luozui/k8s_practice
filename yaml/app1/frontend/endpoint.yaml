@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: app1-front
+  namespace: default
+subsets:
+  - addresses:
+    - ip: 10.103.135.141
+    - ip: 192.168.235.136
+    ports:
+    - port: 8080
