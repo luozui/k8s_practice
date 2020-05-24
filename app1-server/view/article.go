@@ -1,15 +1,16 @@
 package view
 
 import (
+	"fmt"
+	"log"
 	"net/http"
 	"os"
 	"strconv"
-	"fmt"
 
 	"github.com/gin-gonic/gin"
-	"github.com/luozui/app1-server/models"
+	redis "github.com/luozui/app1-server/dal/cache"
 	"github.com/luozui/app1-server/dal/db"
-	"github.com/luozui/app1-server/dal/cache"
+	"github.com/luozui/app1-server/models"
 )
 
 func AddArticle(c *gin.Context) {
@@ -29,19 +30,20 @@ func GetArticle(c *gin.Context) {
 	c.Header("Access-Control-Allow-Origin", "*")
 	article, err := db.GetArticle(ID)
 	if err != nil {
-		resp := map[string]interface{} {
-			"title": "error",
-			"content": "error",
+		resp := map[string]interface{}{
+			"title":    "error",
+			"content":  "error",
 			"view_cnt": 0,
 			"hostname": hostname,
 		}
 		c.JSON(500, resp)
+		log.Println("DB error: ", err)
 		return
 	}
 	viewCnt, err := redis.GetCntAndInc(fmt.Sprint("article_%d", ID))
-	resp := map[string]interface{} {
-		"title": article.Title,
-		"content": article.Content,
+	resp := map[string]interface{}{
+		"title":    article.Title,
+		"content":  article.Content,
 		"view_cnt": viewCnt,
 		"hostname": hostname,
 	}
